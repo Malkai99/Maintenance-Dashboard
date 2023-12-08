@@ -2,6 +2,7 @@ import React from 'react'
 
 const ListCard = () => {
 
+    
     const getColorStatus = (isActive) => {
         if(isActive) return 'text-green-success';
         return 'text-red-alert';
