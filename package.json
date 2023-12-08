@@ -1,5 +1,6 @@
 {
   "name": "dashboard-project",
+  "homepage": "https://malkai99.github.io/Maintenance-Dashboard",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
