@@ -6,8 +6,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 
 
-const GaugeChart = () => {
-  const value = 67;
+const GaugeChart = ({title, subtitle, value}) => {
 
   const options = {
     plugins:{
@@ -27,7 +26,7 @@ const GaugeChart = () => {
   }
     
   const data = {
-    labels: ['OEE', 'Waste'],
+    labels: [title, subtitle],
     datasets: [
       {
         label: 'Effectiveness',

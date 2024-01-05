@@ -9,7 +9,7 @@ const DoughnutChart = ({title, value}) => {
     
     const getChartColor = (color) => {
         const opciones = {
-            'Avaibility': '#3498DB',
+            'Availiability': '#3498DB',
             'Performance': '#B30000',
             'Quality': '#FFC029',
             'default': '#598234',
