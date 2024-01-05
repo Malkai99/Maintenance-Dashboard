@@ -1,0 +1,89 @@
+{
+    "metrics": [
+        {
+            "title": "OEE",
+            "subtitle": "Waste",
+            "value": 95,
+            "type": "gauge"
+        },
+        {
+            "title": "Performance",
+            "value": 95,
+            "type": "doghnut"
+        },
+        {
+            "title": "Availiability",
+            "value": 100,
+            "type": "doghnut"
+        },
+            {
+            "title": "Quality",
+            "value": 100,
+            "type": "doghnut"
+        },
+        {
+            "title": "MTBF",
+            "value": 10,
+            "type": "doghnut"
+        }
+    ],
+    "production": {
+      "realPieces": 200,
+      "plannedPieces": 209
+    },
+    "machines": [
+      {
+        "name": "DF-002",
+        "isActive": false,
+        "requests": [
+          {
+            "folio": "M24-250260",
+            "status": "1",
+            "department": "Mantenimiento",
+            "elapsedTime": "1.00:46:00"
+          }
+        ]
+      },
+      {
+        "name": "DF-003",
+        "isActive": true,
+        "requests": []
+      },
+      {
+        "name": "EN-734",
+        "isActive": true,
+        "requests": []
+      },
+      {
+        "name": "DN-667",
+        "isActive": true,
+        "requests": []
+      },
+      {
+        "name": "DN-668",
+        "isActive": true,
+        "requests": []
+      },
+      {
+        "name": "PH-107",
+        "isActive": true,
+        "requests": []
+      },
+      {
+        "name": "RD-052",
+        "isActive": true,
+        "requests": []
+      },
+      {
+        "name": "RD-053",
+        "isActive": true,
+        "requests": []
+      },
+      {
+        "name": "BD-022",
+        "isActive": true,
+        "requests": []
+      }
+    ]
+  }
+  
