@@ -87,7 +87,7 @@ const DoughnutChart = ({title, value}) => {
     };
 
   return (
-    <div className="card__container block w-full px-8 py-5 max-w-full lg:max-w-[600px] lg:max-h-[350px] max-h-80  h-[350px] 2xl:max-h-96 bg-white rounded-2xl shadow-cardShadow ">
+    <div className="card__container block w-full px-8 py-5 max-w-full xl:max-w[100%] lg:max-w-[600px] lg:max-h-[350px] max-h-80  h-[350px] 2xl:max-h-96 bg-white rounded-2xl shadow-cardShadow ">
       <h3 className='font-roboto font-bold w-full text-2xl md:text-3xl xl:text-4xl text-grey-text ' >{title}</h3>
       <div className='relative block h-[90%] w-[99%]' >
           <Doughnut 
