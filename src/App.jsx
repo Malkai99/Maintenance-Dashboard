@@ -5,9 +5,9 @@ import DashboardHeader from './componets/Dashboard/DashboardHeader';
 function App() {
   return (
     <div className="App w-full h-full flex flex-col">
-      <header className="App- relative">
+      {/* <header className="App- relative">
         <Header />
-      </header>
+      </header> */}
       <section className=' block relative w-full h-full lg:px-20 md:px-10 px-5' >
         <DashboardHeader />
         <DashboardContent />

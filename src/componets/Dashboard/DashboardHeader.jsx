@@ -1,27 +1,57 @@
 import React from 'react'
+import { format, getHours  } from 'date-fns';
+import esLocale from 'date-fns/locale/es';  
+
+
 
 const DashboardHeader = () => {
     const styles = {
-        cardStyles: 'flex items-center justify-center bg-white rounded-xl shadow-cardShadow px-5 py-5 ',
-        fontStyles: 'font-roboto font-bold text-xl text-dark-charcoal'
+        cardStyles: 'flex items-center justify-center bg-white rounded-xl shadow-cardShadow px-0 sm:px-5 py-5 ',
+        fontStyles: 'font-roboto font-bold text-dark-charcoal text-sm sm:text-xl'
+    }
+
+    function getShift() {
+        const currentTime = new Date();
+        const hour = getHours(currentTime);
+        
+        if (hour >= 7 && hour < 15) {
+            return 'Turno 1';
+        } else if (hour >= 15 && hour < 23) {
+            return 'Turno 2';
+        } else {
+            return 'Turno 3';
+        }
+          
+    }
+
+    function getCurrentFormattedDateTime(version) {
+        const currentDate = new Date();
+        let formattedDateTime = format(currentDate, "HH:mm do MMMM",{ locale: esLocale });
+        
+        if(version == 'large'){
+            formattedDateTime = format(currentDate, "HH:mm EEEE do, MMMM yyyy",{ locale: esLocale });
+        }
+        formattedDateTime = formattedDateTime.replace(/\b\w/g, (match) => match.toUpperCase());
+        return formattedDateTime;
     }
 
   return (
-    <div className='relative sm:flex justify-center w-full h-auto hidden mt-[30px]' >
+    <div className='relative flex justify-center w-full h-auto mt-[30px]' >
 
         <div className='w-1/3 h-full flex justify-start' >
             <div className={`${styles.cardStyles} ${styles.fontStyles} w-[200px] h-[50px]`}>
-                <p>Machine 1</p>
+                <p>Maquina 1</p>
             </div>
         </div>
-        <div className='w-1/3 h-full flex justify-center' >
+        <div className='w-1/3 h-full flex justify-center mx-2 md:mx-0' >
             <div className={`${styles.cardStyles} ${styles.fontStyles} w-[200px] h-[50px]`}>
-                <p>Shift 2</p>
+                <p>{getShift()}</p>
             </div>
         </div>
         <div className='w-1/3 h-full flex justify-end' >
             <div className={`${styles.cardStyles} ${styles.fontStyles} w-[400px] h-[50px]`}>
-                <p>18:10 Wednesday 8th, November 2023 </p>
+                <p className='hidden lg:block' >{getCurrentFormattedDateTime('large')}</p>
+                <p className='block lg:hidden' >{getCurrentFormattedDateTime('short')}</p>
             </div>
         </div>
         

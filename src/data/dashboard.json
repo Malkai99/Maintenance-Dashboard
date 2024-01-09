@@ -1,7 +1,7 @@
 {
     "metrics": [
         {
-            "title": "OEE",
+            "title": "Effectiveness",
             "subtitle": "Waste",
             "value": 95,
             "type": "gauge"
@@ -28,8 +28,8 @@
         }
     ],
     "production": {
-      "realPieces": 200,
-      "plannedPieces": 209
+      "piezasReales": 200,
+      "piezasPlaneadas": 209
     },
     "machines": [
       {
