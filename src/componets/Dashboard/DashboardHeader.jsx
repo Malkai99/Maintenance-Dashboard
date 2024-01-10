@@ -1,12 +1,15 @@
 import React from 'react'
 import { format, getHours  } from 'date-fns';
 import esLocale from 'date-fns/locale/es';  
+import Dropdown from '../Utils/Dropdown';
+
 
 
 
 const DashboardHeader = () => {
     const styles = {
         cardStyles: 'flex items-center justify-center bg-white rounded-xl shadow-cardShadow px-0 sm:px-5 py-5 ',
+        buttonStyles: 'flex items-center justify-center bg-transparent  w-[200px] h-[50px]',
         fontStyles: 'font-roboto font-bold text-dark-charcoal text-sm sm:text-xl'
     }
 
@@ -24,23 +27,33 @@ const DashboardHeader = () => {
           
     }
 
+    function capitalizeFirstLetter(inputString) {
+        return inputString
+          .split(' ')
+          .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(' ');
+      }
+
     function getCurrentFormattedDateTime(version) {
         const currentDate = new Date();
-        let formattedDateTime = format(currentDate, "HH:mm do MMMM",{ locale: esLocale });
+        let formattedDateTime = format(currentDate, "do MMMM",{ locale: esLocale });
         
         if(version == 'large'){
-            formattedDateTime = format(currentDate, "HH:mm EEEE do, MMMM yyyy",{ locale: esLocale });
+            formattedDateTime = format(currentDate, "EEEE do, MMMM yyyy",{ locale: esLocale });
+            // formattedDateTime = format(currentDate, "HH:mm EEEE do, MMMM yyyy",{ locale: esLocale });
         }
-        formattedDateTime = formattedDateTime.replace(/\b\w/g, (match) => match.toUpperCase());
+        formattedDateTime = capitalizeFirstLetter(formattedDateTime);
         return formattedDateTime;
     }
+
+    const options = ['Rojo', 'Verde', 'Azul', 'Amarillo', 'Morado', 'Naranja', 'Rosa', 'Negro', 'Blanco', 'Gris'];
 
   return (
     <div className='relative flex justify-center w-full h-auto mt-[30px]' >
 
         <div className='w-1/3 h-full flex justify-start' >
-            <div className={`${styles.cardStyles} ${styles.fontStyles} w-[200px] h-[50px]`}>
-                <p>Maquina 1</p>
+            <div className={`${styles.fontStyles} ${styles.buttonStyles} `}>
+                <Dropdown options={options} />
             </div>
         </div>
         <div className='w-1/3 h-full flex justify-center mx-2 md:mx-0' >
