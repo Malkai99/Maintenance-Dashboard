@@ -1,8 +1,9 @@
-import Header from './componets/Header/index'
+import './App.css'
 import DashboardContent from './componets/Dashboard/DashboardContent';
 import DashboardHeader from './componets/Dashboard/DashboardHeader';
 
 function App() {
+
   return (
     <div className="App w-full h-full flex flex-col">
       {/* <header className="App- relative">
@@ -13,7 +14,7 @@ function App() {
         <DashboardContent />
       </section>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
