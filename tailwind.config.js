@@ -25,6 +25,7 @@ module.exports = {
       'black': '#000000',
       'blue-button': '#1976d2',
       'transparent': 'transparent',
+      'white-smoke': '#F3F3F3',
       
     },
     extend: {

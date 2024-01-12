@@ -5,7 +5,7 @@ import DashboardHeader from './componets/Dashboard/DashboardHeader';
 function App() {
 
   return (
-    <div className="App w-full h-full flex flex-col">
+    <div className="App w-full h-full flex flex-col bg-white-smoke">
       {/* <header className="App- relative">
         <Header />
       </header> */}

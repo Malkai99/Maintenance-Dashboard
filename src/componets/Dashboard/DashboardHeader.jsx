@@ -76,7 +76,7 @@ const DashboardHeader = () => {
                     onChange={handleDateChange}
                     dateFormat={isMobileScreen ? 'Do MMMM' :  'EEEE Do MMMM yyyy'}
                     locale={esLocale}
-                    className='datepicker-input text-center w'
+                    className='datepicker-input text-center w-[100%]'
                 />
                 {/* <p className='hidden lg:block' >{getCurrentFormattedDateTime('large')}</p>
                 <p className='block lg:hidden' >{getCurrentFormattedDateTime('short')}</p> */}
