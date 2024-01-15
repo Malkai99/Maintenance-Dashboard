@@ -41,6 +41,12 @@
             "status": "1",
             "department": "Mantenimiento",
             "elapsedTime": "1.00:46:00"
+          },
+          {
+            "folio": "M24-250260",
+            "status": "1",
+            "department": "Mantenimiento",
+            "elapsedTime": "1.00:46:00"
           }
         ]
       },

@@ -47,11 +47,10 @@ const {metrics,production,machines} = dashboardData;
 
   return (
     <div className={`${styles.gridStyles} my-10`}>
-
-      <ListCard machines={machines} />
       <div className='flex flex-col justify-between items-center'>
         {renderProduction()}
       </div>
+      <ListCard machines={machines} />
       {metrics && Array.isArray(metrics) && metrics.map(renderMetric)}
     </div>
   )

@@ -74,3 +74,11 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.slick-prev:before, .slick-next:before {
+  color: black !important;
+}
+
+.slick-list{
+  padding-left: 1rem;
+}

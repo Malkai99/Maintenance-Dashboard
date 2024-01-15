@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Carousel from '../Utils/Carousel'
 
 const ListCard = ( { machines } ) => {
     const [modalOpen, setModalOpen] = useState(false);
@@ -23,13 +24,31 @@ const ListCard = ( { machines } ) => {
 
     const handleMachineClick = (machine) => {
         setModalOpen(true);
-        setSelectedMachine(machine.requests[0]);
+        console.log(machine.requests)
+        if(machine.requests.length == 0 ){
+            setSelectedMachine(machine.requests[0]);
+        }else{
+            setSelectedMachine(machine.requests);
+        }
     };
     
     const closeModal = () => {
         setModalOpen(false);
         setSelectedMachine(null);
     };
+
+    const getMachines = () => {
+        return (selectedMachine.map( (request) => {
+            return (
+                <>
+                    <p>Folio: {request.folio}</p>
+                    <p>Status: {request.status}</p>
+                    <p>Departamento: {request.department}</p>
+                    <p>Tiempo transcurrido: {request.elapsedTime}</p>
+                </>
+            )
+        }))
+    } 
 
     return (
         <div className='font-roboto 2xl:max--[100%] lg:max-w-[600px] lg:max-h-[350px] h-[350px] card__container block w-full pl-8 py-5 max-w-full max-h-80 2xl:max-h-96 bg-white rounded-2xl shadow-cardShadow '>
@@ -40,7 +59,7 @@ const ListCard = ( { machines } ) => {
                         return (
                             <li key={index} className='relative flex justify-between items-center flex-wrap h-auto w-full my-5'>
                                 <p>{machine.name}</p>
-                                <p onClick={() => handleMachineClick(machine)} className={`cursor-pointer select-none ${getColorStatus(machine.isActive)} `} >{getStatusDef(machine.isActive)}</p>
+                                <p onClick={() => handleMachineClick(machine)} className={`${!machine.isActive ? 'cursor-pointer' : 'cursor-default' } select-none ${getColorStatus(machine.isActive)} `} >{getStatusDef(machine.isActive)}</p>
                             </li>
                         );
                     })
@@ -51,11 +70,10 @@ const ListCard = ( { machines } ) => {
                 <div className='absolute inset-0 bg-black  opacity-50' onClick={closeModal}></div>
                 <div className='z-20 bg-white p-8 max-w-[500px] rounded-lg shadow-cardShadow flex flex-col'>
                     <h3 className='text-xl font-semibold mb-4'>Información de la máquina</h3>
-                    <p>Folio: {selectedMachine.folio}</p>
-                    <p>Status: {selectedMachine.status}</p>
-                    <p>Departamento: {selectedMachine.department}</p>
-                    <p>Tiempo transcurrido: {selectedMachine.elapsedTime}</p>
-                    <button className={`mt-4 ${styles.buttonStyles} ${styles.transitionStyle}`} onClick={closeModal}>
+                    <Carousel>
+                        {getMachines()}
+                    </Carousel>
+                    <button className={`mt-8 ${styles.buttonStyles} ${styles.transitionStyle}`} onClick={closeModal}>
                         Cerrar
                     </button>
                 </div>
