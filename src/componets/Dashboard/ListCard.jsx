@@ -68,7 +68,7 @@ const ListCard = ( { machines } ) => {
             {modalOpen && selectedMachine && (
                 <div className='fixed inset-0 flex items-center justify-center z-10'>
                 <div className='absolute inset-0 bg-black  opacity-50' onClick={closeModal}></div>
-                <div className='z-20 bg-white p-8 max-w-[500px] rounded-lg shadow-cardShadow flex flex-col'>
+                <div className='z-20 bg-white p-8 w-[90%] max-w-[500px] rounded-lg shadow-cardShadow flex flex-col'>
                     <h3 className='text-xl font-semibold mb-4'>Información de la máquina</h3>
                     <Carousel>
                         {getMachines()}
