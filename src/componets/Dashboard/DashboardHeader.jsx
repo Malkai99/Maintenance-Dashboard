@@ -8,6 +8,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 
 
+
 const DashboardHeader = () => {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const isMobileScreen = useMediaQuery({ maxWidth: 720 });
@@ -61,12 +62,13 @@ const DashboardHeader = () => {
 
         <div className='w-1/3 h-full flex justify-start' >
             <div className={`${styles.fontStyles} ${styles.buttonStyles} `}>
-                <Dropdown options={options} />
+                <Dropdown options={options} filterOption={true} />
             </div>
         </div>
         <div className='w-1/3 h-full flex justify-center mx-2 md:mx-0' >
-            <div className={`${styles.cardStyles} ${styles.fontStyles} w-[200px] h-[50px]`}>
-                <p>{getShift()}</p>
+            <div className={` ${styles.fontStyles} w-[200px] h-[50px]`}>
+                {/* <p>{getShift()}</p> */}
+                <Dropdown options={['Turno 1', 'Turno 2', 'Turno 3']} filterOption={false} />
             </div>
         </div>
         <div className='w-1/3 h-full flex justify-end' >

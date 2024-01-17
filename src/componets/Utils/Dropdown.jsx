@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Arrow from '../Utils/Icons/Arrow'
 
-const Dropdown = ({ options }) => {
+const Dropdown = ({ options, filterOption }) => {
     const [selectedOption, setSelectedOption] = useState(options[0]);
     const [isOpen, setIsOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
@@ -79,11 +79,11 @@ const Dropdown = ({ options }) => {
                 ref={dropdownMenuRef}
                 className={`${
                 isOpen ? '' : 'hidden'
-                } absolute right-0 mt-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 p-1 space-y-1 z-10 max-h-[200px] overflow-y-auto max-h-48 ${styles.fontStyles} `}
+                } absolute right-0 mt-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 p-1 space-y-1 z-10 w-full max-h-[200px] overflow-y-auto max-h-48 ${styles.fontStyles} `}
             >
                 <input
                 ref={searchInputRef}
-                className="block w-full px-4 py-2 text-gray-800 font-normal focus:outline-none"
+                className={`block w-full px-4 py-2 text-gray-800 font-normal focus:outline-none ${filterOption ? 'active' : 'hidden'}`}
                 type="text"
                 placeholder="Buscar..."
                 autoComplete="on"
