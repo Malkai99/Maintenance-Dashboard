@@ -10,7 +10,8 @@ const Dropdown = ({ options, filterOption }) => {
     const searchInputRef = useRef(null);
     
     const styles = {
-        fontStyles: 'font-roboto font-bold text-dark-charcoal text-sm sm:text-xl'
+        fontStyles: 'font-roboto font-bold text-dark-charcoal text-sm sm:text-xl',
+        buttonStyles: 'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500 hover:border-blue-500'
     }
 
     useEffect(() => {
@@ -70,7 +71,8 @@ const Dropdown = ({ options, filterOption }) => {
             <button
                 ref={dropdownButtonRef}
                 onClick={toggleDropdown}
-                className="relative h-full flex justify-center items-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white rounded-xl shadow-cardShadow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500"
+                readOnly
+                className={`relative h-full flex justify-center items-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white rounded-xl shadow-cardShadow hover:border-blue-button ${styles.buttonStyles}`}
             >
                 <span className={`mr-2 ${styles.fontStyles} `}>{selectedOption}</span>
                 <Arrow className='absolute right-[10%]' />
@@ -79,7 +81,7 @@ const Dropdown = ({ options, filterOption }) => {
                 ref={dropdownMenuRef}
                 className={`${
                 isOpen ? '' : 'hidden'
-                } absolute right-0 mt-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 p-1 space-y-1 z-10 w-full max-h-[200px] overflow-y-auto max-h-48 ${styles.fontStyles} `}
+                } absolute right-0 mt-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 p-1 space-y-1 z-10 w-full max-h-[200px] overflow-y-auto ${styles.fontStyles} `}
             >
                 <input
                 ref={searchInputRef}

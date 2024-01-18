@@ -1,23 +1,23 @@
 {
     "metrics": [
         {
-            "title": "Effectiveness",
+            "title": "Efectvidad",
             "subtitle": "Waste",
             "value": 95,
             "type": "gauge"
         },
         {
-            "title": "Performance",
+            "title": "Rendimiento",
             "value": 95,
             "type": "doghnut"
         },
         {
-            "title": "Availiability",
+            "title": "Disponibilidad",
             "value": 100,
             "type": "doghnut"
         },
             {
-            "title": "Quality",
+            "title": "Calidad",
             "value": 100,
             "type": "doghnut"
         },

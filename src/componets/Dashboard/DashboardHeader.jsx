@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { format, getHours  } from 'date-fns';
+import React, { useState, forwardRef } from 'react'
+// import { format, getHours  } from 'date-fns';
 import esLocale from 'date-fns/locale/es';  
 import Dropdown from '../Utils/Dropdown';
 import DatePicker from 'react-datepicker';
@@ -13,24 +13,27 @@ const DashboardHeader = () => {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const isMobileScreen = useMediaQuery({ maxWidth: 720 });
     const styles = {
-        cardStyles: 'flex items-center justify-center bg-white rounded-xl shadow-cardShadow px-0 sm:px-5 py-5 ',
+        cardStyles: 'flex items-center justify-center bg-white rounded-xl shadow-cardShadow ',
         buttonStyles: 'flex items-center justify-center bg-transparent  w-[200px] h-[50px]',
-        fontStyles: 'font-roboto font-bold text-dark-charcoal text-sm sm:text-xl'
+        fontStyles: 'font-roboto font-bold text-dark-charcoal text-sm sm:text-xl',
+        marginStyles: 'px-0 sm:px-5 py-5 ',
+        dateStyles: 'select-none focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-button hover:border-blue-button hover:border'
+
     }
 
-    function getShift() {
-        const currentTime = new Date();
-        const hour = getHours(currentTime);
+    // function getShift() {
+    //     const currentTime = new Date();
+    //     const hour = getHours(currentTime);
         
-        if (hour >= 7 && hour < 15) {
-            return 'Turno 1';
-        } else if (hour >= 15 && hour < 23) {
-            return 'Turno 2';
-        } else {
-            return 'Turno 3';
-        }
+    //     if (hour >= 7 && hour < 15) {
+    //         return 'Turno 1';
+    //     } else if (hour >= 15 && hour < 23) {
+    //         return 'Turno 2';
+    //     } else {
+    //         return 'Turno 3';
+    //     }
           
-    }
+    // }
 
     // function capitalizeFirstLetter(inputString) {
     //     return inputString
@@ -57,6 +60,12 @@ const DashboardHeader = () => {
 
     const options = ['Rojo', 'Verde', 'Azul', 'Amarillo', 'Morado', 'Naranja', 'Rosa', 'Negro', 'Blanco', 'Gris'];
 
+    const CustomDateBtn = forwardRef(({ value, onClick }, ref) => (
+        <button className={`w-full h-full bg-white rounded-xl datepicker-input text-center cursor-pointer ${styles.dateStyles}`} onClick={onClick} ref={ref} readOnly>
+          {value}
+        </button>
+    ));
+
   return (
     <div className='relative flex justify-center w-full h-auto mt-[30px]' >
 
@@ -72,13 +81,14 @@ const DashboardHeader = () => {
             </div>
         </div>
         <div className='w-1/3 h-full flex justify-end' >
-            <div className={`${styles.cardStyles} ${styles.fontStyles} w-[100%] xl:w-[80%] h-[50px]`}>
+            <div className={`datepicker-container ${styles.cardStyles} ${styles.fontStyles} p-0 w-[100%] xl:w-[80%] h-[50px]`}>
                 <DatePicker
                     selected={(selectedDate)}
                     onChange={handleDateChange}
                     dateFormat={isMobileScreen ? 'Do MMMM' :  'EEEE Do MMMM yyyy'}
                     locale={esLocale}
-                    className='datepicker-input text-center w-[100%]'
+                    customInput={<CustomDateBtn />}
+                    // className={` w-full h-full rounded-xl datepicker-input text-center cursor-pointer ${styles.dateStyles}`}
                 />
                 {/* <p className='hidden lg:block' >{getCurrentFormattedDateTime('large')}</p>
                 <p className='block lg:hidden' >{getCurrentFormattedDateTime('short')}</p> */}

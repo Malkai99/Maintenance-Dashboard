@@ -9,9 +9,9 @@ const DoughnutChart = ({title, value}) => {
     
     const getChartColor = (color) => {
         const opciones = {
-            'Availiability': '#3498DB',
-            'Performance': '#B30000',
-            'Quality': '#FFC029',
+            'Disponibilidad': '#3498DB',
+            'Rendimiento': '#B30000',
+            'Calidad': '#FFC029',
             'default': '#598234',
         }
     
@@ -24,7 +24,7 @@ const DoughnutChart = ({title, value}) => {
                 display: false
             },
             tooltip: {
-                enabled: true,
+                enabled: false,
                 mode: 'dataset'
             },
         },

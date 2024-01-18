@@ -2,7 +2,7 @@ import React from 'react'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut  } from 'react-chartjs-2';
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+// ChartJS.register(ArcElement, Tooltip, Legend);
 
 
 
@@ -11,7 +11,7 @@ const GaugeChart = ({title, subtitle, value}) => {
   const options = {
     plugins:{
         legend:{
-            display: true
+            display: false
         },
         tooltip: {
             enabled: false
@@ -29,7 +29,7 @@ const GaugeChart = ({title, subtitle, value}) => {
     labels: [title, subtitle],
     datasets: [
       {
-        label: 'Effectiveness',
+        label: 'Efectividad',
         data: [value,100-value],
         backgroundColor: [
             '#598234',
@@ -137,7 +137,7 @@ const GaugeChart = ({title, subtitle, value}) => {
 
   return (
     <div className="card__container block w-full px-8 py-5 max-w-full 2xl:max-w-[100%] lg:max-w-[600px] lg:max-h-[350px] max-h-80  h-[350px] 2xl:max-h-96 bg-white rounded-2xl shadow-cardShadow ">
-      <h3 className='font-roboto font-bold w-full text-2xl md:text-3xl xl:text-4xl text-grey-text ' >Effectiveness</h3>
+      <h3 className='font-roboto font-bold w-full text-2xl md:text-3xl xl:text-4xl text-grey-text ' >{title}</h3>
       <div className='relative block h-full w-[99%]' >
           <Doughnut 
             options={options}
