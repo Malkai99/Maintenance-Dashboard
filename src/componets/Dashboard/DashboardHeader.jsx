@@ -87,6 +87,7 @@ const DashboardHeader = () => {
                     onChange={handleDateChange}
                     dateFormat={isMobileScreen ? 'Do MMMM' :  'EEEE Do MMMM yyyy'}
                     locale={esLocale}
+                    maxDate={new Date()}
                     customInput={<CustomDateBtn />}
                     // className={` w-full h-full rounded-xl datepicker-input text-center cursor-pointer ${styles.dateStyles}`}
                 />

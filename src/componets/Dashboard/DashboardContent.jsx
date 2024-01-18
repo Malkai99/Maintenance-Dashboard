@@ -23,9 +23,7 @@ const {metrics,production,machines} = dashboardData;
     const MetricComponent = metricComponents[metric.type];
     if (MetricComponent) {
       return (
-        <>
-          <MetricComponent value={metric.value} title={metric.title} subtitle={metric.subtitle} />
-        </>
+          <MetricComponent key={`${metric.type}-${index}`} value={metric.value} title={metric.title} subtitle={metric.subtitle} />
       );
     }
     console.warn(`Unknown metric type: ${metric.type}`);
@@ -38,10 +36,7 @@ const {metrics,production,machines} = dashboardData;
         <SingleCard key={key} title={key} qty={value} />
       ));
     }
-
-    // Handle unexpected production data format
     console.warn('Invalid production data format');
-
   }
   
 
