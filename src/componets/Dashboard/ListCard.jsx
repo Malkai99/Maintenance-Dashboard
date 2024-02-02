@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, Fragment } from 'react'
 import Carousel from '../Utils/Carousel'
 
 const ListCard = ( { machines } ) => {
@@ -24,7 +24,6 @@ const ListCard = ( { machines } ) => {
 
     const handleMachineClick = (machine) => {
         setModalOpen(true);
-        console.log(machine.requests)
         if(machine.requests.length == 0 ){
             setSelectedMachine(machine.requests[0]);
         }else{
@@ -38,14 +37,14 @@ const ListCard = ( { machines } ) => {
     };
 
     const getMachines = () => {
-        return (selectedMachine.map( (request) => {
+        return (selectedMachine.map( (request,index) => {
             return (
-                <>
+                <Fragment key={index}>
                     <p>Folio: {request.folio}</p>
                     <p>Status: {request.status}</p>
                     <p>Departamento: {request.department}</p>
                     <p>Tiempo transcurrido: {request.elapsedTime}</p>
-                </>
+                </Fragment>
             )
         }))
     } 

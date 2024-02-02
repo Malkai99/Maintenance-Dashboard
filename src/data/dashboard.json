@@ -90,6 +90,40 @@
         "isActive": true,
         "requests": []
       }
+    ],
+    "shifts": [
+      {
+        "text": "1er Turno",
+        "value": "1",
+        "isSelected": false
+      },
+      {
+        "text": "2do Turno",
+        "value": "2",
+        "isSelected": true
+      },
+      {
+        "text": "3er Turno",
+        "value": "3",
+        "isSelected": false
+      }
+    ],
+    "cells": [
+      {
+        "text": "86777054",
+        "value": "810",
+        "isSelected": false
+      },
+      {
+        "text": "86333048",
+        "value": "733",
+        "isSelected": false
+      },
+      {
+        "text": "54390823",
+        "value": "390",
+        "isSelected": true
+      }
     ]
   }
   

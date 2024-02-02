@@ -1,8 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import Arrow from '../Utils/Icons/Arrow'
 
-const Dropdown = ({ options, filterOption }) => {
-    const [selectedOption, setSelectedOption] = useState(options[0]);
+const Dropdown = ({ options, isFilterEnable }) => {
+    const [selectedOption, setSelectedOption] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const dropdownButtonRef = useRef(null);
@@ -12,6 +12,13 @@ const Dropdown = ({ options, filterOption }) => {
     const styles = {
         fontStyles: 'font-roboto font-bold text-dark-charcoal text-sm sm:text-xl',
         buttonStyles: 'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500 hover:border-blue-500'
+    }
+
+    const getDefaultOption = () => {
+        if (options) {
+            const defaultOption = options.find((option) => option.isSelected);
+            setSelectedOption(defaultOption || null);
+          }
     }
 
     useEffect(() => {
@@ -26,6 +33,8 @@ const Dropdown = ({ options, filterOption }) => {
             }
         };
 
+        getDefaultOption()
+
         document.addEventListener('mousedown', handleOutsideClick);
 
         return () => {
@@ -33,11 +42,11 @@ const Dropdown = ({ options, filterOption }) => {
         };
     }, []);
 
-    const toggleDropdown = () => {
+    const handleButtonClick = () => {
         setIsOpen(!isOpen);
     };
 
-    const handleInputChange = (e) => {
+    const handleInputChanged = (e) => {
         setSearchTerm(e.target.value.toLowerCase());
     };
 
@@ -45,12 +54,8 @@ const Dropdown = ({ options, filterOption }) => {
         setSelectedOption(option);
         resetScrollPosition();
         clearSearchTerm();
-        toggleDropdown();
+        handleButtonClick();
     };
-
-    const filteredOptions = options.filter((option) =>
-        option.toLowerCase().includes(searchTerm.toLowerCase())
-    );
 
     const resetScrollPosition = () => {
         if (dropdownMenuRef.current) {
@@ -65,16 +70,29 @@ const Dropdown = ({ options, filterOption }) => {
         }
       };
 
-
+    const getOptionsFilter = useCallback(
+        () => {
+            if(isFilterEnable){
+                return options.filter((option) =>
+                    option.text.toLowerCase().includes(searchTerm.toLowerCase())
+                );
+            }
+            return options
+            
+        },
+        [searchTerm, isFilterEnable],
+    );
+    
+    
     return (
         <div className={`relative group w-[100%] h-[100%] ${styles.fontStyles}`}>
             <button
                 ref={dropdownButtonRef}
-                onClick={toggleDropdown}
+                onClick={handleButtonClick}
                 readOnly
                 className={`relative h-full flex justify-center items-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white rounded-xl shadow-cardShadow hover:border-blue-button ${styles.buttonStyles}`}
             >
-                <span className={`mr-2 ${styles.fontStyles} `}>{selectedOption}</span>
+                <span className={`mr-2 ${styles.fontStyles} `}>{selectedOption.text}</span>
                 <Arrow className='absolute right-[10%]' />
             </button>
             <div
@@ -83,24 +101,29 @@ const Dropdown = ({ options, filterOption }) => {
                 isOpen ? '' : 'hidden'
                 } absolute right-0 mt-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 p-1 space-y-1 z-10 w-full max-h-[200px] overflow-y-auto ${styles.fontStyles} `}
             >
-                <input
-                ref={searchInputRef}
-                className={`block w-full px-4 py-2 text-gray-800 font-normal focus:outline-none ${filterOption ? 'active' : 'hidden'}`}
-                type="text"
-                placeholder="Buscar..."
-                autoComplete="on"
-                onChange={handleInputChange}
-                />
-                
-                {filteredOptions.map((option, index) => (
-                <div
-                    key={index}
-                    onClick={() => handleOptionClick(option)}
-                    className={`font-normal block px-4 py-2 text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer rounded-md`}
-                >
-                    {option}
-                </div>
-                ))}
+                {
+                    isFilterEnable && 
+                    <input
+                        ref={searchInputRef}
+                        className={`block w-full px-4 py-2 text-gray-800 font-normal focus:outline-none ${isFilterEnable ? 'active' : 'hidden'}`}
+                        type="text"
+                        placeholder="Buscar..."
+                        autoComplete="on"
+                        onChange={handleInputChanged}
+                    />
+                }
+                {
+                    options && getOptionsFilter().map((option, index) => (
+                        <option
+                            key={index}
+                            value={option.value}
+                            onClick={() => handleOptionClick(option)}
+                            className={`font-normal block px-4 py-2 text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer rounded-md`}
+                        >
+                            {option.text}
+                        </option>
+                    ))
+                }
                 
                 
             </div>
