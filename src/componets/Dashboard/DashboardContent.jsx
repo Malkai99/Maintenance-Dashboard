@@ -30,9 +30,9 @@ const {metrics,production,machines} = dashboardData;
     return null;
   };
 
-  const renderProduction = () => {
-    if (production && typeof production === 'object') {
-      return Object.entries(production).map(([key, value]) => (
+  const renderProduction = (productionInfo) => {
+    if (productionInfo && typeof productionInfo === 'object') {
+      return Object.entries(productionInfo).map(([key, value]) => (
         <SingleCard key={key} title={key} qty={value} />
       ));
     }
@@ -43,10 +43,16 @@ const {metrics,production,machines} = dashboardData;
   return (
     <div className={`${styles.gridStyles} my-10 pb-12 md:pb-0`}>
       <div className='flex flex-col justify-between items-center 2xl:max-h-[350px]'>
-        {renderProduction()}
+        {
+         production && renderProduction(production)
+        }
       </div>
-      <ListCard machines={machines} />
-      {metrics && Array.isArray(metrics) && metrics.map(renderMetric)}
+      {
+        machines && <ListCard machines={machines} />
+      }
+      {
+        metrics && Array.isArray(metrics) && metrics.map(renderMetric)
+      }
     </div>
   )
 }
