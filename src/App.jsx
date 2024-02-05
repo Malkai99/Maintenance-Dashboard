@@ -17,7 +17,7 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className={`App w-full h-screen flex flex-col bg-white-smoke ${isDarkMode ? 'theme-dark' : 'theme-light'}`}>
+      <div className={`App w-full  xl:h-screen flex flex-col bg-white-smoke ${isDarkMode ? 'theme-dark' : 'theme-light'}`}>
         {/* <header className="App- relative bg-white-smoke">
           <Header />
         </header> */}
