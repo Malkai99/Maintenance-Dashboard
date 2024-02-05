@@ -137,7 +137,7 @@ const GaugeChart = ({title, subtitle, value}) => {
 
   return (
     <div className="card__container block w-full px-8 py-5 max-w-full 2xl:max-w-[100%] lg:max-w-[600px] lg:max-h-[350px] max-h-80  h-[350px] 2xl:max-h-96 bg-white rounded-2xl shadow-cardShadow ">
-      <h3 className='font-roboto font-bold w-full text-2xl md:text-3xl xl:text-4xl text-grey-text ' >{title}</h3>
+      <h3 className='font-roboto font-bold w-full text-2xl md:text-3xl xl:text-4xl text-grey-text select-none' >{title}</h3>
       <div className='relative block h-full w-[99%]' >
           <Doughnut 
             options={options}
