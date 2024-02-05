@@ -10,7 +10,7 @@ const getShifts = async() => {
 
 const useGetCells = () => {
     const query = useQuery({
-        queryKey: ["shifts"],
+        queryKey: ["cells"],
         queryFn: () => {
          return getShifts();
         },

@@ -32,8 +32,8 @@ const Dropdown = ({ options, isFilterEnable }) => {
                 resetScrollPosition();
             }
         };
-
-        getDefaultOption()
+        if (options)
+            getDefaultOption();
 
         document.addEventListener('mousedown', handleOutsideClick);
 

@@ -48,7 +48,6 @@ const DashboardHeader = () => {
         </div>
         <div className='w-1/3 h-full flex justify-center mx-2 md:mx-0' >
             <div className={` ${styles.fontStyles} w-[200px] h-[50px]`}>
-                {/* <p>{getShift()}</p> */}
                 <Dropdown options={shifts} isFilterEnable={false} />
             </div>
         </div>
