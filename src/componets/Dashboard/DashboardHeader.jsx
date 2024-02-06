@@ -4,19 +4,19 @@ import Dropdown from '../Utils/Dropdown';
 import DatePicker from 'react-datepicker';
 import { useMediaQuery } from 'react-responsive';
 import 'react-datepicker/dist/react-datepicker.css';
-// import useGetShifts from '../hooks/useGetShifts';
-// import useGetCells from '../hooks/useGetCells';
+import useGetShifts from '../hooks/useGetShifts';
+import useGetCells from '../hooks/useGetCells';
 import dashboardData from '../../data/dashboard.json'
 
 
 
 
 const DashboardHeader = () => {
-    const { shifts, cells } = dashboardData;
+    // const { shifts, cells } = dashboardData;
     const [selectedDate, setSelectedDate] = useState(new Date());
     const isMobileScreen = useMediaQuery({ maxWidth: 768 });
-    // const { data: shifts } = useGetShifts()
-    // const { data: cells } = useGetCells
+    const { data: shifts } = useGetShifts()
+    const { data: cells } = useGetCells
     const styles = {
         cardStyles: 'flex items-center justify-center bg-white rounded-xl shadow-cardShadow ',
         buttonStyles: 'flex items-center justify-center bg-transparent  w-[200px] h-[50px]',
