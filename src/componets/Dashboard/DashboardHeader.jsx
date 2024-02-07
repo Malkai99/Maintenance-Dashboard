@@ -17,6 +17,7 @@ const DashboardHeader = () => {
     const isMobileScreen = useMediaQuery({ maxWidth: 768 });
     const { data: shifts } = useGetShifts()
     const { data: cells } = useGetCells()
+    
     const styles = {
         cardStyles: 'flex items-center justify-center bg-white rounded-xl shadow-cardShadow ',
         buttonStyles: 'flex items-center justify-center bg-transparent  w-[200px] h-[50px]',

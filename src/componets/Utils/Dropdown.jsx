@@ -22,6 +22,11 @@ const Dropdown = ({ options, isFilterEnable }) => {
     }
 
     useEffect(() => {
+        if (options && Array.isArray(options))
+            getDefaultOption();
+    }, [options]);
+
+    useEffect(() => {
         const handleOutsideClick = (e) => {
             if (dropdownButtonRef.current && dropdownMenuRef.current &&
             !dropdownButtonRef.current.contains(e.target) &&
@@ -32,11 +37,7 @@ const Dropdown = ({ options, isFilterEnable }) => {
                 resetScrollPosition();
             }
         };
-        if (options)
-            getDefaultOption();
-
         document.addEventListener('mousedown', handleOutsideClick);
-
         return () => {
             document.removeEventListener('mousedown', handleOutsideClick);
         };
@@ -72,7 +73,8 @@ const Dropdown = ({ options, isFilterEnable }) => {
 
     const getOptionsFilter = useCallback(
         () => {
-            if(isFilterEnable){
+            if(!Array.isArray(options)) return []
+            if(isFilterEnable ){
                 return options.filter((option) =>
                     option.text.toLowerCase().includes(searchTerm.toLowerCase())
                 );
