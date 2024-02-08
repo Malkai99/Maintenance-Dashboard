@@ -22,6 +22,7 @@ const ListCard = ( { machines } ) => {
     };
 
     const handleMachineClick = (machine) => {
+        if(machine.isActive) return;
         setModalOpen(true);
         setSelectedMachine(machine.requests)
     };
@@ -62,7 +63,7 @@ const ListCard = ( { machines } ) => {
                         return (
                             <li key={index} className='relative flex justify-between items-center flex-wrap h-auto w-full my-5'>
                                 <p className='cursor-default select-none' >{machine.name}</p>
-                                <p onClick={() => handleMachineClick(machine)} className={`${!machine.isActive ? 'cursor-pointer' : 'cursor-default' } select-none ${getColorStatus(machine.isActive)} `} >{getStatusDef(machine.isActive)}</p>
+                                <p onClick={() => handleMachineClick(machine)} className={`${(machine && machine.isActive == false) ? 'cursor-pointer' : 'cursor-default' } select-none ${getColorStatus(machine.isActive)} `} >{getStatusDef(machine.isActive)}</p>
                             </li>
                         );
                     })

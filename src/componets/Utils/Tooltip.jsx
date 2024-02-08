@@ -35,12 +35,12 @@ const Tooltip = ({ text, children }) => {
       <span
         ref={openBtnRef}
         onClick={openTooltip}
-        className="cursor-pointer"
+        className={`${showTooltip ? 'cursor-pointer' : 'cursor-default'}`}
       >
         {children}
       </span>
 
-      {(
+      {showTooltip && (
         <div ref={tooltipRef} onClick={closeTooltip} className={` cursor-pointer select-none absolute z-10 bg-black text-white p-2 rounded-md -left-2 top-full text-sm sm:text-base max-w-[200px] lg:max-w-[300px] lg:w-[300px] w-[200px] transition-all duration-300 ease-in-out ${
             showTooltip ? 'opacity-100 transform scale-100' : 'opacity-0 transform scale-95'
           }`}>
