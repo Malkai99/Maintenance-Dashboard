@@ -4,10 +4,19 @@ import ListCard from './ListCard'
 import SingleCard from './SingleCard'
 import DoughnutChart from './DoughnutChart'
 import dashboardData from '../../data/dashboard.json'
+import useGetDashboardInfo from '../hooks/useGetDashboardInfo'
+import LoadingSpinner from '../Utils/LoadingSpinner'
 
 const DashboardContent = () => {
 
-const {metrics,production,machines} = dashboardData;
+  // const {metrics,production,machines} = dashboardData;
+  const { data, isLoading } = useGetDashboardInfo(1,2,'02/06/2024')
+  const { machines = [{}], metrics = [{}], production } = data || {};
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+  
 
   const styles = {
     gridStyles:`dashboard__container block relative w-full h-auto grid gap-6 xl:grid-cols-3 xl:grid-rows-2 md:grid-cols-2 sm:grid-cols-1 sm:grid-auto-rows-auto`,
