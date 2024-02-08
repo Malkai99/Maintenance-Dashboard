@@ -8,19 +8,31 @@ import useGetDashboardInfo from '../hooks/useGetDashboardInfo'
 import LoadingSpinner from '../Utils/LoadingSpinner'
 
 const DashboardContent = () => {
-
   // const {metrics,production,machines} = dashboardData;
-  const { data, isLoading } = useGetDashboardInfo(1,2,'02/06/2024')
+  const { data, isLoading, isError, isFetching, refetch } = useGetDashboardInfo(1,2,'02/06/2024')
   const { machines = [{}], metrics = [{}], production } = data || {};
-
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
-  
 
   const styles = {
     gridStyles:`dashboard__container block relative w-full h-auto grid gap-6 xl:grid-cols-3 xl:grid-rows-2 md:grid-cols-2 sm:grid-cols-1 sm:grid-auto-rows-auto`,
-    marginStyles: `lg:px-20 md:px-10 px-5 my-10 pb-12`
+    marginStyles: `lg:px-20 md:px-10 px-5 my-10 pb-12`,
+    buttonStyles: 'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500 hover:border-blue-500'
+  }
+
+  if (isLoading || isFetching) {
+    return <LoadingSpinner />;
+  }
+  
+  if (isError) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="text-center text-red-600 font-bold p-8 border border-red-600 bg-red-100 rounded-md max-w-md">
+          <p className="mb-4">Error al cargar los datos. Inténtalo de nuevo más tarde.</p>
+          <button className={` ${styles.buttonStyles} bg-blue-500 text-black px-4 py-2 rounded-md shadow-md border border-blue-700`} onClick={refetch} >
+            Volver a intentar
+          </button>
+        </div>
+      </div>
+    );
   }
 
   const metricComponents = {
