@@ -3,12 +3,10 @@ import GaugeChart from './GaugeChart'
 import ListCard from './ListCard'
 import SingleCard from './SingleCard'
 import DoughnutChart from './DoughnutChart'
-import dashboardData from '../../data/dashboard.json'
 import useGetDashboardInfo from '../hooks/useGetDashboardInfo'
 import LoadingSpinner from '../Utils/LoadingSpinner'
 
 const DashboardContent = () => {
-  // const {metrics,production,machines} = dashboardData;
   const { data, isLoading, isError, isFetching, refetch } = useGetDashboardInfo(1,2,'02/06/2024')
   const { machines = [{}], metrics = [{}], production } = data || {};
 
@@ -36,7 +34,7 @@ const DashboardContent = () => {
   }
 
   const metricComponents = {
-    doghnut: DoughnutChart,
+    doughnut: DoughnutChart,
     gauge: GaugeChart,
   };
 
