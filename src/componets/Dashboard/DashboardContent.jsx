@@ -52,10 +52,10 @@ const DashboardContent = () => {
   };
 
   const renderProduction = (productionInfo) => {
-    if (productionInfo && typeof productionInfo === 'object') {
-      return Object.entries(productionInfo).map(([key, value]) => (
-        <SingleCard key={key} title={key} qty={value} />
-      ));
+    if (productionInfo && Array.isArray(productionInfo)) {
+      return productionInfo.map((info, key) => {
+        return <SingleCard key={key} title={info.title} qty={info.value} />
+    });
     }
     console.warn('Invalid production data format');
   }
