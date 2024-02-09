@@ -1,4 +1,4 @@
-import React, { useState, forwardRef } from 'react'
+import React, { forwardRef, useState } from 'react'
 import esLocale from 'date-fns/locale/es';  
 import Dropdown from '../Utils/Dropdown';
 import DatePicker from 'react-datepicker';
@@ -6,18 +6,16 @@ import { useMediaQuery } from 'react-responsive';
 import 'react-datepicker/dist/react-datepicker.css';
 import useGetShifts from '../hooks/useGetShifts';
 import useGetCells from '../hooks/useGetCells';
-import dashboardData from '../../data/dashboard.json'
-
-
-
+import { useGlobalState } from '../hooks/useGlobalState';
+import { format } from 'date-fns';
 
 const DashboardHeader = () => {
-    // const { shifts, cells } = dashboardData;
-    const [selectedDate, setSelectedDate] = useState(new Date());
+    const { setShift, setCell, setDate, } = useGlobalState()
+    const [dateValue, setdateValue] = useState(new Date());
     const isMobileScreen = useMediaQuery({ maxWidth: 768 });
     const { data: shifts } = useGetShifts()
     const { data: cells } = useGetCells()
-    
+
     const styles = {
         cardStyles: 'flex items-center justify-center bg-white rounded-xl shadow-cardShadow ',
         buttonStyles: 'flex items-center justify-center bg-transparent  w-[200px] h-[50px]',
@@ -27,9 +25,9 @@ const DashboardHeader = () => {
 
     }
 
-
     function handleDateChange(date) {
-        setSelectedDate(date);
+        setdateValue(date);
+        setDate(format(date, "MM/dd/yyyy"))
     }
 
 
@@ -44,18 +42,18 @@ const DashboardHeader = () => {
 
         <div className='w-1/3 h-full flex justify-start' >
             <div className={`${styles.fontStyles} ${styles.buttonStyles} `}>
-                <Dropdown options={cells} isFilterEnable={true} />
+                <Dropdown options={cells} isFilterEnable={true} changeGlobalState={setCell} />
             </div>
         </div>
         <div className='w-1/3 h-full flex justify-center mx-2 md:mx-0' >
             <div className={` ${styles.fontStyles} w-[200px] h-[50px]`}>
-                <Dropdown options={shifts} isFilterEnable={false} />
+                <Dropdown options={shifts} isFilterEnable={false} changeGlobalState={setShift} />
             </div>
         </div>
         <div className='w-1/3 h-full flex justify-end' >
             <div className={`datepicker-container ${styles.cardStyles} ${styles.fontStyles} p-0 w-[100%] xl:w-[80%] h-[50px]`}>
                 <DatePicker
-                    selected={(selectedDate)}
+                    selected={(dateValue)}
                     onChange={handleDateChange}
                     dateFormat={isMobileScreen ? 'dd MMMM' :  'EEEE dd MMMM yyyy'}
                     locale={esLocale}

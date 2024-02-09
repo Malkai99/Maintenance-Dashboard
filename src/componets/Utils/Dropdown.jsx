@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import Arrow from '../Utils/Icons/Arrow'
 
-const Dropdown = ({ options, isFilterEnable }) => {
+const Dropdown = ({ options, isFilterEnable, changeGlobalState }) => {
     const [selectedOption, setSelectedOption] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
@@ -18,6 +18,7 @@ const Dropdown = ({ options, isFilterEnable }) => {
         if (options) {
             const defaultOption = options.find((option) => option.isSelected);
             setSelectedOption(defaultOption || null);
+            changeGlobalState(defaultOption.value)
           }
     }
 
@@ -53,6 +54,7 @@ const Dropdown = ({ options, isFilterEnable }) => {
 
     const handleOptionClick = (option) => {
         setSelectedOption(option);
+        changeGlobalState(option.value)
         resetScrollPosition();
         clearSearchTerm();
         handleButtonClick();

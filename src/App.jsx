@@ -1,4 +1,5 @@
 import './App.css'
+
 import DashboardContent from './componets/Dashboard/DashboardContent';
 import DashboardHeader from './componets/Dashboard/DashboardHeader';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -19,7 +20,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <GlobalStateProvider>
-        <div className={`App w-full  xl:h-screen flex flex-col bg-white-smoke ${isDarkMode ? 'theme-dark' : 'theme-light'}`}>
+        <div className={`App w-full  xl:h-screen flex flex-col bg-white-smoke ${false ? 'theme-dark' : 'theme-light'}`}>
           {/* <header className="App- relative bg-white-smoke">
             <Header />
           </header> */}

@@ -5,9 +5,11 @@ import SingleCard from './SingleCard'
 import DoughnutChart from './DoughnutChart'
 import useGetDashboardInfo from '../hooks/useGetDashboardInfo'
 import LoadingSpinner from '../Utils/LoadingSpinner'
+import { useGlobalState } from '../hooks/useGlobalState'
 
 const DashboardContent = () => {
-  const { data, isLoading, isError, isFetching, refetch } = useGetDashboardInfo(1,2,'02/06/2024')
+  const { shift, cell, date} = useGlobalState()
+  const { data, isLoading, isError, isFetching, refetch } = useGetDashboardInfo(cell,shift,date)
   const { machines = [{}], metrics = [{}], production } = data || {};
 
   const styles = {

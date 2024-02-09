@@ -1,6 +1,9 @@
 import { useQuery } from "@tanstack/react-query"
 
 const getDashboardInfo = async( productId, shift, date ) => {
+  if (productId === null || shift === null || date === null) {
+    throw new Error("Alguno de los parámetros es null");
+  }
     const baseAPIUrl = import.meta.env.VITE_REACT_APP_API_URL
     const searchParams = new URLSearchParams({
         productId: productId,
@@ -13,7 +16,7 @@ const getDashboardInfo = async( productId, shift, date ) => {
 }
 
 const useGetDashboardInfo = ( productId, shift, date ) => {
-    
+  
     const query = useQuery({
         queryKey: ["dashboard", productId, shift, date],
         queryFn: () => {
