@@ -84,7 +84,7 @@ const Dropdown = ({ options, isFilterEnable, changeGlobalState }) => {
             return options
             
         },
-        [searchTerm, isFilterEnable],
+        [searchTerm, isFilterEnable, options]
     );
     
     
