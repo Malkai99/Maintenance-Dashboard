@@ -118,14 +118,14 @@ const Dropdown = ({ options, isFilterEnable, changeGlobalState }) => {
                 }
                 {
                     options && getOptionsFilter().map((option, index) => (
-                        <option
+                        <span
                             key={index}
                             value={option.value}
                             onClick={() => handleOptionClick(option)}
                             className={`font-normal block px-4 py-2 text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer rounded-md`}
                         >
                             {option.text}
-                        </option>
+                        </span>
                     ))
                 }
                 
