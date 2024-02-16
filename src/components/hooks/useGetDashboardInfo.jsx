@@ -25,7 +25,7 @@ const useGetDashboardInfo = ( productId, shift, date ) => {
       onError: (error) => {
         console.error("Error en la consulta de la informacion del dashboard:", error);
       },
-      // refetchInterval: 3 * 60 * 1000,
+      refetchInterval: 3 * 60 * 1000,
       staleTime: 2 * 60 * 1000
     });
   return query;
