@@ -5,7 +5,16 @@ import react from '@vitejs/plugin-react-swc'
 export default defineConfig({
   base: "/Maintenance-Dashboard/",
   plugins: [react()],
+  resolve: {
+    alias: {
+      '@': "/src",
+      '@components': "/src/components",
+      '@hooks': "/src/components/hooks",
+      '@utils': "/src/components/Utils",
+    }
+  },
   build: {
+    outDir: 'dist',
     rollupOptions: {
         output:{
             manualChunks(id) {

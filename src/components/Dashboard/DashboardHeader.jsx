@@ -3,11 +3,11 @@ import esLocale from 'date-fns/locale/es';
 import DatePicker from 'react-datepicker';
 import { useMediaQuery } from 'react-responsive';
 import 'react-datepicker/dist/react-datepicker.css';
-import useGetShifts from '../hooks/useGetShifts';
-import useGetCells from '../hooks/useGetCells';
-import { useGlobalState } from '../hooks/useGlobalState';
+import useGetShifts from '@hooks/useGetShifts';
+import useGetCells from '@hooks/useGetCells';
+import { useGlobalState } from '@hooks/useGlobalState';
 import { format } from 'date-fns';
-import { Dropdown } from '../Utils/index'
+import { Dropdown } from '@utils/index'
 
 const DashboardHeader = () => {
     const { setShift, setCell, setDate, } = useGlobalState()

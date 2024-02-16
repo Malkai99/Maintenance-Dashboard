@@ -1,6 +1,6 @@
 import { useState, Fragment } from 'react'
 import { FaInfoCircle } from 'react-icons/fa';
-import { Carousel, Modal, Tooltip } from '../Utils/index'
+import { Carousel, Modal, Tooltip } from '@utils/index'
 
 const ListCard = ( { machines } ) => {
     const [modalOpen, setModalOpen] = useState(false);

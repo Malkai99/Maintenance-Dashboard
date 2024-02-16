@@ -3,9 +3,9 @@ import GaugeChart from './GaugeChart'
 import ListCard from './ListCard'
 import SingleCard from './SingleCard'
 import DoughnutChart from './DoughnutChart'
-import useGetDashboardInfo from '../hooks/useGetDashboardInfo'
-import { useGlobalState } from '../hooks/useGlobalState'
-import { LoadingSpinner } from '../Utils/index'
+import useGetDashboardInfo from '@hooks/useGetDashboardInfo'
+import { useGlobalState } from '@hooks/useGlobalState'
+import { LoadingSpinner } from '@utils/index'
 
 const DashboardContent = () => {
   const { shift, cell, date} = useGlobalState()
