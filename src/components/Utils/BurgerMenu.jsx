@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const BurgerMenu = () => {
+const BurgerMenu = () => {
   return (
     <div className='bugermenu-container'>
         <button className="navbar-burger flex items-center text-blue-600 p-3">
@@ -12,3 +12,5 @@ export const BurgerMenu = () => {
     </div>
   )
 }
+
+export default BurgerMenu 

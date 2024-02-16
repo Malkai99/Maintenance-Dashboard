@@ -1,10 +1,10 @@
 import './App.css'
 
-import DashboardContent from './componets/Dashboard/DashboardContent';
-import DashboardHeader from './componets/Dashboard/DashboardHeader';
+import DashboardContent from './components/Dashboard/DashboardContent';
+import DashboardHeader from './components/Dashboard/DashboardHeader';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { GlobalStateProvider } from './componets/hooks/useGlobalState'
+import { GlobalStateProvider } from './components/hooks/useGlobalState'
 
 const queryClient = new QueryClient()
 

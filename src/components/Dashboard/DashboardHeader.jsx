@@ -1,6 +1,5 @@
 import React, { forwardRef, useState } from 'react'
 import esLocale from 'date-fns/locale/es';  
-import Dropdown from '../Utils/Dropdown';
 import DatePicker from 'react-datepicker';
 import { useMediaQuery } from 'react-responsive';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -8,6 +7,7 @@ import useGetShifts from '../hooks/useGetShifts';
 import useGetCells from '../hooks/useGetCells';
 import { useGlobalState } from '../hooks/useGlobalState';
 import { format } from 'date-fns';
+import { Dropdown } from '../Utils/index'
 
 const DashboardHeader = () => {
     const { setShift, setCell, setDate, } = useGlobalState()

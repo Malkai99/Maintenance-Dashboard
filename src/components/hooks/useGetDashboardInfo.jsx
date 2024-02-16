@@ -4,6 +4,7 @@ const getDashboardInfo = async( productId, shift, date ) => {
   if (productId === null || shift === null || date === null) {
     throw new Error("Alguno de los parámetros es null");
   }
+  console.log('productId, shift, date ', productId, shift, date)
     const baseAPIUrl = import.meta.env.VITE_REACT_APP_API_URL
     const searchParams = new URLSearchParams({
         productId: productId,
@@ -16,18 +17,18 @@ const getDashboardInfo = async( productId, shift, date ) => {
 
 const useGetDashboardInfo = ( productId, shift, date ) => {
 
-    const query = useQuery({
-        queryKey: ["dashboard", productId, shift, date],
-        queryFn: () => {
-         return getDashboardInfo(productId, shift, date);
-        },
-        onError: (error) => {
-          console.error("Error en la consulta de la informacion del dashboard:", error);
-        },
-        refetchInterval: 3 * 60 * 1000,
-        staleTime: 2 * 60 * 1000
-      });
-    return query;
+  const query = useQuery({
+      queryKey: ["dashboard", productId, shift, date],
+      queryFn: () => {
+        return getDashboardInfo(productId, shift, date);
+      },
+      onError: (error) => {
+        console.error("Error en la consulta de la informacion del dashboard:", error);
+      },
+      // refetchInterval: 3 * 60 * 1000,
+      staleTime: 2 * 60 * 1000
+    });
+  return query;
 }
 
 export default useGetDashboardInfo;
