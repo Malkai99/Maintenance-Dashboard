@@ -9,8 +9,8 @@ import { useGlobalState } from '../hooks/useGlobalState'
 
 const DashboardContent = () => {
   const { shift, cell, date} = useGlobalState()
-  const { data, isLoading, isError, isFetching, refetch } = useGetDashboardInfo(cell,shift,date)
-  const { machines = [{}], metrics = [{}], production } = data || {};
+  const { data, isLoading, isError, isFetching, isRefetching, refetch } = useGetDashboardInfo(cell,shift,date)
+  const { machines , metrics = [{}], production } = data || {};
 
   const styles = {
     gridStyles:`dashboard__container block relative w-full h-auto grid gap-6 xl:grid-cols-3 xl:grid-rows-2 md:grid-cols-2 sm:grid-cols-1 sm:grid-auto-rows-auto`,
@@ -18,7 +18,7 @@ const DashboardContent = () => {
     buttonStyles: 'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500 hover:border-blue-500'
   }
 
-  if (isLoading || isFetching) {
+  if (isLoading || isFetching || isRefetching) {
     return <LoadingSpinner />;
   }
   

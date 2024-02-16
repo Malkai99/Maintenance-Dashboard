@@ -16,6 +16,7 @@ const useGetCells = () => {
         onError: (error) => {
             console.error("Error en la consulta de celdas:", error);
         },
+        staleTime: 8 * 60 * 60 * 1000,
       });
     return query;
 }

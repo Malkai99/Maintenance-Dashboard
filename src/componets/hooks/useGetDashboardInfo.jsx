@@ -11,17 +11,21 @@ const getDashboardInfo = async( productId, shift, date ) => {
         date: date,
       });
     const response = await (await fetch(`${baseAPIUrl}/api/cells/dashboard?${searchParams}`)).json()
-
     return response;
 }
 
 const useGetDashboardInfo = ( productId, shift, date ) => {
-  
+
     const query = useQuery({
         queryKey: ["dashboard", productId, shift, date],
         queryFn: () => {
          return getDashboardInfo(productId, shift, date);
         },
+        onError: (error) => {
+          console.error("Error en la consulta de la informacion del dashboard:", error);
+        },
+        refetchInterval: 3 * 60 * 1000,
+        staleTime: 2 * 60 * 1000
       });
     return query;
 }
